@@ -1,0 +1,411 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>プレイヤーの作成と移動スクリプトの作成 · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 3.6.15">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="styles/website.css">
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2" data-path="page1.html">
+            
+                <a href="page1.html">
+            
+                    
+                    プレイヤーの作成と移動スクリプトの作成
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >プレイヤーの作成と移動スクリプトの作成</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="ウォークスルーアプリの作成">ウォークスルーアプリの作成</h1>
+<h2 id="新規プロジェクトの作成">新規プロジェクトの作成</h2>
+<p><br></p>
+<p>今回はVRアプリケーションの基礎となる3D室内のアセットのインポートと、操作するプレイヤーを作成します。</p>
+<p>まずは新規プロジェクトを作成しましょう。</p>
+<p><img src="img/image1-1.png" alt=""></p>
+<p>UnityHubを開き、右上の新規作成ボタンを押してください。</p>
+<p>テンプレートは3Dのままで、プロジェクト名はなんでも構いません。ここでは「WalkThrough」としておきます。
+保存先を決めたら作成ボタンを押してください。</p>
+<p><br></p>
+<p><img src="img/image1-2.png" alt=""></p>
+<p>Unityが開けたらUnityエディタのレイアウトを任意の形にしてください。
+Unityエディタの右上の「Layout」から好きなレイアウトを設定できます。
+こちらの教材では「2 × 3」を利用します。</p>
+<p>そしてSceneの名前を「WalkScene」に変更してください。<br>上記の画像のようなウィンドウが表示されたら「Reload」を選択してください。</p>
+<p><br></p>
+<h2 id="アセットストアからインポート">アセットストアからインポート</h2>
+<h3 id="建物のインポート">建物のインポート</h3>
+<p><br></p>
+<p>プロジェクト作成が終わったら早速アセットストアから3D素材をインポートします。</p>
+<p><img src="img/image1-3.png" alt=""></p>
+<p>UnityのWindowタブからAssetStoreを選択します。
+そうすると、このようにSceneウィンドウの場所にAssetStoreが表示されますので、検索から「FurnishedCabin」を検索してインポートしてください。</p>
+<p><br></p>
+<p><img src="img/image1-4.png" alt=""></p>
+<p>このアセットに格納されているPrefabsを利用すれば簡単に部屋を作成できるのですが、今回はこのアセットに入っているScenesからDemoのSceneをダブルクリックで開きましょう。</p>
+<p>そして、初めからヒエラルキーウィンドウにある「FPSController」と「Prototype」を削除してください。<br>これで準備は完了です。</p>
+<p><br></p>
+<h2 id="プレイヤーの作成">プレイヤーの作成</h2>
+<p><img src="img/image1-5.png" alt=""></p>
+<p>次に実際に室内を歩き回るプレイヤーを作成します。
+ヒエラルキーウィンドウからCapsuleを作成し、任意の場所に配置します。Caplsuleの下が地面にギリギリ設置するように配置してください。<br>少し大きいのでサイズを調整しましょう。<br>TransformのScaleを<br>X : 0.5<br>Y : 0.8<br>Z : 0.5<br>に変更してください。</p>
+<p>これでプレイヤーの準備は完了です。</p>
+<p><br></p>
+<h2 id="動作スクリプトの作成">動作スクリプトの作成</h2>
+<p>次に動作用のスクリプトを作成します。<br>今回の動作は「カプセルの移動」「カメラのアングル変更」になります。</p>
+<p><br></p>
+<p><img src="img/image1-6.png" alt=""></p>
+<p>まずはプロジェクトウィンドウから新規フォルダを作成し、名前を「Scripts」に変更してください。
+そしてその中に「PlayerContoroller」という名前の新規スクリプトを作成し、格納します。<br>そして、PlayerControllerスクリプトをヒエラルキーのCapsuleにアタッチしてください。<br>この一連の作業が分からない場合は前回までの教材等で調べながら挑戦してみましょう。  </p>
+<p>アタッチまでできたらPlayerControllerスクリプトをVisualStudioで開きましょう。</p>
+<p><br></p>
+<p>VisualStudioでスクリプトを開いたら、コードを下記のように変更してください。</p>
+<pre><code class="lang-c#"><span class="hljs-keyword">using</span> System.Collections;
+<span class="hljs-keyword">using</span> System.Collections.Generic;
+<span class="hljs-keyword">using</span> UnityEngine;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">PlayerController</span> : <span class="hljs-title">MonoBehaviour</span>
+{
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">float</span> speed = <span class="hljs-number">0.02f</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>(<span class="hljs-params"></span>)</span>
+    {
+
+    }
+
+    <span class="hljs-comment">// Update is called once per frame</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span>(<span class="hljs-params"></span>)</span>
+    {
+        <span class="hljs-built_in">float</span> x = Input.GetAxis(<span class="hljs-string">&quot;Horizontal&quot;</span>);
+        <span class="hljs-built_in">float</span> z = Input.GetAxis(<span class="hljs-string">&quot;Vertical&quot;</span>);
+
+        transform.Translate(x * speed, <span class="hljs-number">0.0f</span>, z * speed);
+    }
+}
+</code></pre>
+<p><br></p>
+<p>クラスの先頭にスピード用のパブリック変数を定義し、初期値に0.02fを代入しました。</p>
+<p>Updateメソッドの中にキーボードの十字キーの値を取得し、それぞれ変数x、zに代入し、Capsuleのx座標とz座標に代入しています。<br>ここまで記述終わったら、コードを保存し、Unityに戻りましょう。</p>
+<p><br></p>
+<p><img src="img/image1-7.png" alt=""></p>
+<p>現在はカメラを配置していないので、ヒエラルキーウィンドウからCameraを追加し、Capsuleが見えるように配置してください。</p>
+<p>この状態で一度実行してみましょう。</p>
+<p><br></p>
+<p><img src="img/image1-8.png" alt=""></p>
+<p>そうすると、このように部屋の中を自由に動き回れるようになりました。<br>しかし部屋のオブジェクトを全て通り抜けてしまいます。これはCapsuleに衝突判定用のRigidbodyがアタッチされていない為です。</p>
+<p>一度実行を終了し、CapsuleのインスペクターのAddComponentからRigidbodyを追加してもう一度実行してください。</p>
+<p><br></p>
+<p><img src="img/image1-9.png" alt=""></p>
+<p>これで家具を通り抜けないようになりましたが、今度は衝突すると倒れてしまうようになりました。</p>
+<p>こちらを修正します。</p>
+<p><br></p>
+<p><img src="img/image1-10.png" alt=""></p>
+<p>ヒエラルキーウィンドウでCapsuleが選択されているのを確認し、インスペクターウィンドウで、RigidbodyのConstraintsの「▶︎」をクリックし展開します。<br>そして「FreezeRotation」の項目のX、Y、Zにチェックを入れてください。</p>
+<p>これで実行してみると、家具に当たっても転倒しなくなりました。</p>
+<p><br></p>
+<h2 id="視点を動かすスクリプトの作成">視点を動かすスクリプトの作成</h2>
+<p>次のステップとしてCapsuleにカメラを取り付け、一緒に動くようにし、さらにマウスで上下左右を見渡せるようにしたいと思います。</p>
+<h3 id="capsuleにカメラをつける">Capsuleにカメラをつける</h3>
+<p><img src="img/image1-11.png" alt=""></p>
+<p>まずはヒエラルキーウィンドウでCameraをCapsuleの子要素にしてください。<br>そして、CameraのTransformを<br>Position X : 0<br>Position Y : 0.8<br>Position Z : -0.2</p>
+<p>Scale X : 1<br>Scale Y : 1<br>Scale Z : 1</p>
+<p>に変更してください。<br>これで人の目線と同じような高さでカメラを移動させるようにできました。</p>
+<div class="point">
+    CameraのZ座標に「-0.2」を代入すると、壁についた時に壁の外側が見えてしまうバグを予防することができます。（カメラをCapsuleの内側に移動させたため）
+</div>
+
+<p><br></p>
+<h3 id="視点変更のスクリプト追加">視点変更のスクリプト追加</h3>
+<p>現状だと視点が固定されているのでマウスで自由に変更できるようにします。</p>
+<p><img src="img/image1-12.png" alt=""></p>
+<p>プロジェクトウィンドウで新規スクリプトを作成し、名前を「CameraController」としてください。<br>そしてそのスクリプトをScripsフォルダに格納し、ヒエラルキーウィンドウのCapsuleにアタッチしてください。<br>次にこのCameraScriptをVisualStudioで開きます。</p>
+<p><br></p>
+<p>CameraControllerスクリプトを開いたらコードを以下のように変更してください。</p>
+<pre><code class="lang-c#"><span class="hljs-keyword">using</span> System.Collections;
+<span class="hljs-keyword">using</span> System.Collections.Generic;
+<span class="hljs-keyword">using</span> UnityEngine;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">CameraController</span> : <span class="hljs-title">MonoBehaviour</span>
+{
+    <span class="hljs-keyword">public</span> GameObject cameraView;
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>(<span class="hljs-params"></span>)</span>
+    {
+
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span>(<span class="hljs-params"></span>)</span>
+    {
+        <span class="hljs-built_in">float</span> mouseX = Input.GetAxis(<span class="hljs-string">&quot;Mouse X&quot;</span>);
+        <span class="hljs-built_in">float</span> mouseY = Input.GetAxis(<span class="hljs-string">&quot;Mouse Y&quot;</span>);
+
+        transform.Rotate(<span class="hljs-number">0.0f</span>, mouseX, <span class="hljs-number">0.0f</span>);
+        cameraView.transform.Rotate(-mouseY, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span>);
+    }
+}
+</code></pre>
+<p>ここまで記述終わりましたら、コードを保存してUnityに戻りましょう。</p>
+<p><br></p>
+<p><img src="img/image1-13.png" alt=""></p>
+<p>CapsuleのインスペクターのCameraControllerにCameraViewという項目が追加されていると思うので、そこにヒエラルキーからCameraをドラッグ&amp;ドロップしてください。<br>ここまでできたら一度Unityを実行してみましょう。</p>
+<p>マウスの移動に合わせて視点が上下左右に移動できていれば成功です。</p>
+<p><img src="img/image1-14.png" alt=""></p>
+<p>忘れずにUnityを保存しておきましょう。</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Introduction">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"プレイヤーの作成と移動スクリプトの作成","level":"1.2","depth":1,"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"page1.md","mtime":"2021-01-29T10:04:49.699Z","type":"markdown"},"gitbook":{"version":"3.6.15","time":"2021-01-29T10:07:30.150Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
